@@ -54,22 +54,18 @@ fn lexer(input: &str) {
 
         cur_pos += 1;
 
-        if token_type == TokenType::EOF {
-            tokens.push(Token {
-                token_type: TokenType::EOF,
-                text: "<EOF>".to_owned(),
-                start_pos: cur_pos,
-            });
-
-            continue;
-        }
-
         tokens.push(Token {
             token_type: token_type,
             text: look_ahead.to_string(),
             start_pos: token_start,
         });
     }
+
+    tokens.push(Token {
+        token_type: TokenType::EOF,
+        text: "<EOF>".to_owned(),
+        start_pos: cur_pos,
+    });
 
     println!("{:?}", tokens);
 }
